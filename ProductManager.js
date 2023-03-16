@@ -113,22 +113,22 @@ class ProductManager {
 
 const manager = new ProductManager()
 
-// manager.addProduct(productExample)
-// manager.addProduct(productExample2)
-// manager.addProduct(productExample3)
+manager.addProduct(productExample)
+manager.addProduct(productExample2)
+manager.addProduct(productExample3)
 
 const handleManager = async _ => {
 
-    //Obtener productos
-    //const products = await manager.getProducts()
-    //console.log(products)
+    // Obtener productos
+    // const products = await manager.getProducts()
+    // console.log(products)
 
     //Obtener producto por ID
-    //const productById = await manager.getProductById(1)
-    //console.log(productById)
+    // const productById = await manager.getProductById(1)
+    // console.log(productById)
 
-    //Borrar un producto por ID
-    //await manager.deleteProduct(1)
+    // Borrar un producto por ID
+    // await manager.deleteProduct(0)
 
     /*
     Actualizar producto por ID
