@@ -1,6 +1,5 @@
 const express = require("express");
 const ProductManager = require("./ProductManager/ProductManager");
-const fs = require("fs/promises");
 
 const app = express();
 
