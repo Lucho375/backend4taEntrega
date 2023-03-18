@@ -1,4 +1,3 @@
-/* eslint-disable no-useless-catch */
 const fs = require("fs/promises");
 const { productExample, productExample2, productExample3 } = require("./products.js");
 

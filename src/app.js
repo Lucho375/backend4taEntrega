@@ -27,7 +27,7 @@ app.get("/products", async (req, res) => {
 app.get("/products/:productId", async (req, res) => {
   const { productId } = req.params;
   const productById = await ProductManager.getProductById(parseInt(productId));
-  res.send(productById);
+  res.send(`<pre>${JSON.stringify(productById, null, 2)}</pre>`);
 });
 
 app.listen(8080, () => console.log("Servidor en puerto 8080"));
