@@ -13,12 +13,13 @@ app.get("/", async (req, res) => {
 // Obtener todos los productos
 app.get("/products", async (req, res) => {
   const limit = req.query.limit; // Limite de consulta
+
   const allProducts = await ProductManager.getProducts(); // todos los products del archivo products.json
 
-  if (parseInt(limit)) {
+  if (!isNaN(parseInt(limit))) {
     const limitedArr = allProducts.slice(0, parseInt(limit));
     res.send(`<pre>${JSON.stringify(limitedArr, null, 2)}</pre>`);
-  } else if (isNaN(parseInt(limit))) {
+  } else if (!isNaN(parseInt(limit))) {
     res.send(`<p>Solamente numeros aceptados en la query</p>`);
   } else {
     res.send(`<pre>${JSON.stringify(allProducts, null, 2)}</pre>`);
