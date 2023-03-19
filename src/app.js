@@ -1,6 +1,6 @@
 const express = require("express");
 const ProductManager = require("./ProductManager/ProductManager");
-
+const PORT = 8080;
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
@@ -15,18 +15,23 @@ app.get("/products", async (req, res) => {
   const limit = req.query.limit; // Limite de consulta
   const allProducts = await ProductManager.getProducts(); // todos los products del archivo products.json
 
-  if (limit) {
+  if (parseInt(limit)) {
     const limitedArr = allProducts.slice(0, parseInt(limit));
     res.send(`<pre>${JSON.stringify(limitedArr, null, 2)}</pre>`);
+  } else if (isNaN(parseInt(limit))) {
+    res.send(`<p>Solamente numeros aceptados en la query</p>`);
   } else {
     res.send(`<pre>${JSON.stringify(allProducts, null, 2)}</pre>`);
   }
 });
 
+//obtener un producto por ID, ids actuales = 0,1 y 2
 app.get("/products/:productId", async (req, res) => {
   const { productId } = req.params;
   const productById = await ProductManager.getProductById(parseInt(productId));
-  res.send(`<pre>${JSON.stringify(productById, null, 2)}</pre>`);
+  res.send(
+    typeof productById === "object" ? `<pre>${JSON.stringify(productById, null, 2)}</pre>` : `<p>${productById}</p>`
+  );
 });
 
-app.listen(8080, () => console.log("Servidor en puerto 8080"));
+app.listen(PORT, () => console.log(`Servidor en puerto ${PORT}`));

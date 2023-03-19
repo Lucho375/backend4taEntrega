@@ -1,11 +1,11 @@
 [
   {
-    "title": "Iphone 14 pro",
+    "title": "Motorola edge 30 ultra",
     "description": "Celular",
-    "code": "APPLE14",
-    "price": 1500,
-    "thumbnail": "https://bittstores.com/wp-content/uploads/2022/09/Apple-iPhone-14-Pro-deep-purple-.jpeg",
-    "stock": 2,
+    "code": "MOTO30ULTRA",
+    "price": 1200,
+    "thumbnail": "https://coppelar.vtexassets.com/arquivos/ids/1750574-800-auto?v=638055093574330000&width=800&height=auto&aspect=true",
+    "stock": 5,
     "id": 0
   },
   {
@@ -18,12 +18,12 @@
     "id": 1
   },
   {
-    "title": "Motorola edge 30 ultra",
+    "title": "Iphone 14 pro",
     "description": "Celular",
-    "code": "MOTO30ULTRA",
-    "price": 1200,
-    "thumbnail": "https://coppelar.vtexassets.com/arquivos/ids/1750574-800-auto?v=638055093574330000&width=800&height=auto&aspect=true",
-    "stock": 5,
+    "code": "APPLE14",
+    "price": 1500,
+    "thumbnail": "https://bittstores.com/wp-content/uploads/2022/09/Apple-iPhone-14-Pro-deep-purple-.jpeg",
+    "stock": 2,
     "id": 2
   }
 ]

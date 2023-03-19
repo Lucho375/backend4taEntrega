@@ -77,7 +77,9 @@ class ProductManager {
     try {
       await this.#loadData();
       const finded = this.#products.find(prod => prod.id === id);
-      if (!finded) return `Producto ${id} no encontrado`;
+      if (!finded) {
+        return `Producto ${id} no encontrado`;
+      }
       return finded;
     } catch (error) {
       throw error;
