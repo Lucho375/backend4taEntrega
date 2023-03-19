@@ -28,10 +28,12 @@ app.get("/products", async (req, res) => {
 //obtener un producto por ID, ids actuales = 0,1 y 2
 app.get("/products/:productId", async (req, res) => {
   const { productId } = req.params;
-  const productById = await ProductManager.getProductById(parseInt(productId));
-  res.send(
-    typeof productById === "object" ? `<pre>${JSON.stringify(productById, null, 2)}</pre>` : `<p>${productById}</p>`
-  );
+  if (isNaN(parseInt(productId))) {
+    res.send("<p>Solamente pasar numero en la query</p>");
+  } else {
+    const productById = await ProductManager.getProductById(parseInt(productId));
+    res.send(`<pre>${JSON.stringify(productById, null, 2)}</pre>`);
+  }
 });
 
 app.listen(PORT, () => console.log(`Servidor en puerto ${PORT}`));
