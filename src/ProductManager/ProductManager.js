@@ -25,6 +25,7 @@ class ProductManager {
       if (!path.find(elem => elem === "products.json")) {
         await fs.writeFile(this.path, "");
       }
+
       const data = await fs.readFile(this.path, "utf-8");
 
       if (data.trim() !== "") {
@@ -44,17 +45,19 @@ class ProductManager {
 
     try {
       await this.#loadData();
-      const findProduct = this.#products.find(elem => elem.code === prod.code);
 
+      const findProduct = this.#products.find(elem => elem.code === prod.code);
       if (findProduct) {
         throw Error(`El producto '${prod.title}' ya existe`);
       }
+
       if (this.#products.length > 0) {
         const lastProduct = this.#products[this.#products.length - 1];
         this.#autoId = lastProduct.id + 1;
       }
       const newProduct = { ...prod, id: this.#autoId };
       this.#products.push(newProduct);
+
       await this.#saveData();
     } catch (error) {
       throw error;
@@ -110,29 +113,4 @@ class ProductManager {
   }
 }
 
-const manager = new ProductManager();
-
-// manager.addProduct(productExample);
-// manager.addProduct(productExample2);
-// manager.addProduct(productExample3);
-
-const handleManager = async () => {
-  // Obtener productos
-  // const products = await manager.getProducts()
-  // console.log(products)
-  // Obtener producto por ID
-  // const productById = await manager.getProductById(1)
-  // console.log(productById)
-  // Borrar un producto por ID
-  // await manager.deleteProduct(0)
-  /*
-Actualizar producto por ID
-como primer parametro recibe el ID del producto
-segudno parametro un objeto con los valores a actualizar
-*/
-  // await manager.updateProduct(1, { title: "Nuevo producto" })
-};
-
-// handleManager();
-
-module.exports = manager;
+module.exports = ProductManager;
