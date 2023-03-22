@@ -16,7 +16,6 @@
   "nodemonConfig": {
     "ignore": [
       "*.json"
-    ],
-    "delay": 2500
+    ]
   }
 }
