@@ -1,6 +1,4 @@
-const fs = require("fs/promises");
-const { productExample, productExample2, productExample3 } = require("./products.js");
-
+import fs from "fs/promises";
 class ProductManager {
   #products;
   #autoId;
@@ -8,7 +6,7 @@ class ProductManager {
   constructor() {
     this.#products = [];
     this.#autoId = 0;
-    this.path = "./products.json";
+    this.path = "./src/db/products.json";
   }
 
   async #saveData() {
@@ -21,9 +19,9 @@ class ProductManager {
 
   async #loadData() {
     try {
-      const path = await fs.readdir("./");
+      const path = await fs.readdir("./src/db");
       if (!path.find(elem => elem === "products.json")) {
-        await fs.writeFile(this.path, "");
+        await fs.writeFile(this.path, "[]");
       }
 
       const data = await fs.readFile(this.path, "utf-8");
@@ -94,7 +92,7 @@ class ProductManager {
       await this.#loadData();
       const productToUpdate = this.#products.find(prod => prod.id === id);
       if (!productToUpdate) throw Error(`Producto ${id} no encontrado`);
-      Object.assign(productToUpdate, dataUpdated);
+      Object.assign(productToUpdate, { ...dataUpdated, id });
       await this.#saveData();
     } catch (error) {
       throw error;
@@ -104,6 +102,12 @@ class ProductManager {
   async deleteProduct(id) {
     try {
       await this.#loadData();
+      if (this.#products.length === 0) {
+        throw Error(`No existen productos`);
+      }
+      if (!this.#products.find(elem => elem.id === id)) {
+        throw Error(`No existe un producto con el id ${id}`);
+      }
       const newArr = this.#products.filter(elem => elem.id !== id);
       this.#products = newArr;
       await this.#saveData();
@@ -113,4 +117,4 @@ class ProductManager {
   }
 }
 
-module.exports = ProductManager;
+export default ProductManager;
