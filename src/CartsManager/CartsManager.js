@@ -70,8 +70,7 @@ class CartsManager {
   async updateCart(cartId, productId) {
     try {
       await this.#loadData();
-
-      const findedCart = this.#carts.find(cart => cart.id === cartId)?.products;
+      const findedCart = this.findCart(cartId)?.products;
 
       if (findedCart === undefined) {
         throw Error("No existe el carrito");
