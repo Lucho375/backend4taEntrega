@@ -10,8 +10,6 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
-    // quotes: [1, "single"],
-    // quotes: ["warn", "double"]
     'no-unused-vars': 'error',
     'no-useless-catch': 'off',
     'space-before-function-paren': 'off',
