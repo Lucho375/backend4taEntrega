@@ -1,0 +1,86 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: white;
+}
+
+body {
+  background-color: grey;
+}
+
+h1 {
+  text-align: center;
+  margin: 50px 0;
+}
+
+h2 {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-around;
+  max-width: 500px;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  background: red;
+}
+
+#productos-lista {
+  display: grid;
+  grid-template-columns: repeat(3, 300px);
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(97, 96, 95);
+  margin-top: 100px;
+}
+
+.prodContainer {
+  padding: 10px;
+}
+
+.productForm {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: #000;
+  width: 300px;
+  place-items: center;
+  padding: 10px;
+}
+
+button {
+  background: #494949;
+  padding: 3px;
+  font-size: 16px;
+  margin: 3px;
+}
+
+button:hover {
+  scale: 1.1;
+  cursor: pointer;
+}
+
+input {
+  background: #000;
+  color: white;
+  border: 2px solid white;
+  margin: 10px;
+}
+
+.formContainer {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}

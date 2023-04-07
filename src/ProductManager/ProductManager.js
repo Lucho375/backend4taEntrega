@@ -72,7 +72,7 @@ class ProductManager {
     try {
       await this.#loadData()
       if (this.#products.length <= 0) {
-        throw Error('No hay productos en el archivo')
+        throw Error('No hay productos en el archivo "products.json"')
       }
       return this.#products
     } catch (error) {

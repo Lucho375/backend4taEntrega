@@ -1,17 +1,8 @@
 import { Router } from 'express'
 import ProductManager from '../ProductManager/ProductManager.js'
-import { productExample, productExample2, productExample3 } from '../ProductManager/products.js' //eslint-disable-line
 
 const productsRoutes = Router()
 const manager = new ProductManager()
-
-// agregar productos
-const main = async () => {//eslint-disable-line
-  // await manager.addProduct(productExample);
-  // await manager.addProduct(productExample2);
-  // await manager.addProduct(productExample3);
-}
-// main();
 
 // Obtener todos los productos
 productsRoutes.get('/', async (req, res) => {
@@ -22,7 +13,10 @@ productsRoutes.get('/', async (req, res) => {
     const limitedArr = allProducts.slice(0, parseInt(limit))
     res.status(200).send({ status: 'success', payload: limitedArr })
   } else if (typeof limit !== 'number' && typeof limit !== 'undefined') {
-    res.status(400).send({ status: 'error', message: 'Solamente numeros permitidos en la query' })
+    res.status(400).send({
+      status: 'error',
+      message: 'Solamente numeros permitidos en la query'
+    })
   } else {
     res.status(200).send({ status: 'success', payload: allProducts })
   }
@@ -43,7 +37,9 @@ productsRoutes.post('/', async (req, res) => {
 productsRoutes.get('/:productId', async (req, res) => {
   const { productId } = req.params
   if (isNaN(productId)) {
-    res.status(400).send({ status: 'error', message: 'Solamente pasar numeros en el id' })
+    res
+      .status(400)
+      .send({ status: 'error', message: 'Solamente pasar numeros en el id' })
   } else {
     const productById = await manager.getProductById(parseInt(productId))
     res.status(200).send({ productById })
@@ -56,11 +52,16 @@ productsRoutes.put('/:id', async (req, res) => {
   const update = req.body
 
   if (Object.keys(req.body).length === 0) {
-    return res.status(400).send({ status: 'error', message: 'No se enviaron campos para actualizar' })
+    return res.status(400).send({
+      status: 'error',
+      message: 'No se enviaron campos para actualizar'
+    })
   }
   try {
     await manager.updateProduct(+id, update)
-    res.status(200).send({ status: 'success', message: `producto ${id} modificado` })
+    res
+      .status(200)
+      .send({ status: 'success', message: `producto ${id} modificado` })
   } catch (error) {
     return res.status(404).send({ status: 'error', error: error.message })
   }
@@ -71,7 +72,9 @@ productsRoutes.delete('/:id', async (req, res) => {
   const id = req.params.id
   try {
     await manager.deleteProduct(parseInt(id))
-    res.status(200).send({ status: 'success', message: `producto ${id} eliminado` })
+    res
+      .status(200)
+      .send({ status: 'success', message: `producto ${id} eliminado` })
   } catch (error) {
     res.status(400).send({ error: error.message })
   }
